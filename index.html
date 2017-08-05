@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Song App</title>
+    <link rel="stylesheet" type="text/css" href="font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <section class="welcome-screen hidden">
+            <h1> Welcome to Songify </h1>
+            <h3> Enter name to access your account </h3>
+            <div class="input-wrapper">
+                <input type="text" placeholder="Name" id="name-input">
+                <button> Go </button>
+            </div>
+        </section>
+        <div class="main">
+            <header>
+                <div class="right floated user-name"> </div>
+            </header>
+            <section class="content">
+                <audio src="song.mp3"></audio>
+                <div class="list-headers">
+        <div> Title </div>
+        <div> Artist </div>
+        <div> Album </div>
+        <div> Duration </div>
+        </div>
+        <div class="song-list">
+        <div class="song" id="song1">
+        <span class="song-name"></span>
+        <span class="song-artist"></span>
+        <span class="song-album"></span>
+        <span class="song-length"></span>
+        </div>
+        <div class="song" id="song2">
+          <span class="song-name"></span>
+        </div>
+        <div class="song" id="song3">
+          <span class="song-name"></span>
+        </div>
+        <div class="song" id="song4">
+          <span class="song-name"></span>
+        </div>
+          </div>
+            </section>
+            <footer>
+                <div class="controls">
+                    <div class="player-buttons">
+                        <i class="fa fa-play clickable play-icon" aria-hidden="true"></i>
+                    </div>
+                    <div class="progress-wrapper">
+                        <span class="time-elapsed"> </span>
+                        <div class="player-progress">
+                            <div class="progress-filled"> </div>
+                        </div>
+                        <span class="song-duration"></span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="jquery.js">
+    </script>
+    <script>
+    $('.welcome-screen button').on('click', function() {
+        var name = $('#name-input').val();
+        if (name.length > 2) {
+            var message = "Welcome, " + name;
+            $('.main .user-name').text(message);
+            $('.welcome-screen').addClass('hidden');
+            $('.main').removeClass('hidden');
+        } else {
+            $('#name-input').addClass('error');
+        }
+    });
+
+
+    function fancyTimeFormat(time)
+{
+    // Hours, minutes and seconds
+    var hrs = ~~(time / 3600);
+    var mins = ~~((time % 3600) / 60);
+    var secs = time % 60;
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    var ret = "";
+
+    if (hrs > 0) {
+        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
+}
+
+    function toggleSong()// what we have done is created a function toggle song jisme hum icon play and pause dekhenge
+     {
+var song = document.querySelector('audio');
+if(song.paused == true)//agar statement true h to
+ {
+console.log('Playing');
+$('.play-icon').removeClass('fa-play').addClass('fa-pause');// play icon ko remove krke hum pause icon laga denge
+song.play();
+}
+else {
+console.log('Pausing');
+$('.play-icon').removeClass('fa-pause').addClass('fa-play');// agar ni h condition true to hum pause ko remove krenge aur play class ko add krenge
+song.pause();
+}
+}
+function updateCurrentTime() // yaha pe we have a made a function that will do the following steps
+{
+var song = document.querySelector('audio');//variable song me query selector se audio ko lena is been donw with this function that we made.
+// console.log(song.currentTime);//console.log humara currentTime lena hai
+// console.log(song.duration);// yaha pe console.log humara song k duration ko lera h
+var currentTime = Math.floor(song.currentTime);// variable currentTime se nikal ra h math.floor k andar song k current time ko
+currentTime = fancyTimeFormat(currentTime);//current time ko nikal k fancyTimeFormat waale function m pass krke naya time nikala h fir dubara current time m pass kia us processed tie ko
+var duration = Math.floor(song.duration);//variable duration se nikal ra h math.floor k andar song k duration ko
+duration = fancyTimeFormat(duration);
+$('.time-elapsed').text(currentTime);// text function humara jo humare current time k duration h use display kr dega
+$('.song-duration').text(duration);// ab text se hum duration ko pass kr re jo variablehumne upar bnaya tha
+}
+
+
+
+
+    $('.play-icon').on('click', function() {
+        toggleSong();//calling of function that we created (toggleSong)
+    });
+    $('body').on('keypress', function(event) {
+                if (event.keyCode == 32) {
+                    toggleSong();// calling of function
+                }
+            });
+
+
+            var songList = ['Badri Ki Dulhania (Title Track)',
+'Humma Song', 'Nashe Si Chadh Gayi', 'The Breakup Song']; // yaha pe jab humari windows load hogi to song ka name dia h
+
+              window.onload = function()// humne ek function bnaya h window.onload jo given below kaam kr ra h
+              {
+
+          // $('.song-name').text(songName);//jab windows load hogi to jo humne name assign kia h wo use text k form m mil jaega
+          // $('#song2 .song-name').text(songName2);
+          // $('#song3 .song-name').text(songName3);
+          // $('#song4 .song-name').text(songName4);
+
+$('#song1 .song-name').text(songList[0]);
+$('#song2 .song-name').text(songList[1]);
+$('#song3 .song-name').text(songList[2]);
+$('#song4 .song-name').text(songList[3]);
+          updateCurrentTime();// yaha pe humara upar waala function call hua k jaise he hum apna page refresh kare uske sath2 he humara time show hojae
+          setInterval(function()// yaha pe humne ek aur function bnaya jo updateCurrentTime ko call kr ra h
+           {
+          updateCurrentTime();
+        },1000);// ye jo 1000 value humne di h this means 1 sec aur iski wajah se humara page har ek second m update hora h.
+                }
+    </script>
+</body>
+
+</html>
