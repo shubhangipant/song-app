@@ -25,6 +25,8 @@ h1 {
 }
 
 .welcome-screen {
+  background: url(images.jpg);
+    background-size: cover;
     height: 100%;
     width: 100%;
     display: flex;
@@ -40,6 +42,10 @@ h1 {
     flex-direction: column;
     color: white;
     background-color: #1f1f1f;
+}
+.left.floated {
+    float: left;
+    display: inline;
 }
 
 .main header {
@@ -77,6 +83,7 @@ h1 {
 
 .clickable {
     cursor: pointer;
+    margin-left: 20px;
 }
 
 .error {
@@ -164,6 +171,8 @@ h1 {
 .song-length {
     text-align: right;
 }
+
+
 .content {
     position: relative;
 }
@@ -188,26 +197,52 @@ h1 {
 .current-song-album {
     margin-top: 0.4rem;
 }
-/*DataTables overrides*/
+
+
 table.dataTable tbody tr {
-   background-color: initial;
+    background-color: initial;
 }
 #songs_info {
-   display: none;
+    display: none;
 }
 
 #songs_filter {
-   color: transparent;
+    color: transparent;
 }
 #songs_filter input {
-   width: 400px;
-   margin-bottom: 1rem;
-   font-size: 16px;
+    width: 400px;
+    margin-bottom: 1rem;
+    font-size: 16px;
 }
-.player-buttons .fa {
-    margin-right: 2rem;
-}
+#fill{
 
-.fa.disabled {
-    color: gray;
+width: 30%;
+background: red;
+
+}
+.active{
+
+color: grey;
+
+}
+#wel-layout {
+    background-color: rgba(198, 232, 155,.7);
+    padding: 40px 100px 40px 100px;
+    margin-right: 250px;
+    border-radius: 18px;
+}
+svg{
+position: absolute;
+top: 249px;
+left: 100px;
+display: none;
+}
+.contain{
+
+height: 499px;
+width: 100%;
+display: none;
+
+
+
 }
