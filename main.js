@@ -110,7 +110,49 @@ var songs = [{
         'duration': '2:29',
         'fileName': 'song4.mp3',
         'image': 'download (2).jpg'
-    }
+    },
+    {
+        'name': 'Baauer',
+        'artist': 'Harlem Shake',
+        'album': 'Anonymous',
+        'duration': '3:16',
+        'fileName': 'song5.mp3',
+        'image': 'download5.png'
+    },
+    {
+        'name': 'Umbrella',
+        'artist': 'Rihana',
+        'album': 'good girl gone bad',
+        'duration': '4:36',
+        'fileName': 'song6.mp3',
+        'image': 'download (6).jpg'
+    },
+    {
+        'name': 'Romour has it',
+        'artist': 'Adele',
+        'album': 'single',
+        'duration': '3:43',
+        'fileName': 'song7.mp3',
+        'image': 'download (7).jpg'
+    },
+    {
+        'name': 'None',
+        'artist': 'Someone like you',
+        'album': 'single',
+        'duration': '3:51',
+        'fileName': 'song8.mp3',
+        'image': 'download (8).jpg'
+    },
+    {
+        'name': 'SOmething about love',
+        'artist': 'David Archuleta',
+        'album': 'Single',
+        'duration': '4:22',
+        'fileName': 'song9.mp3',
+        'image': 'download (9).jpg'
+    },
+
+
 ]
 
 
